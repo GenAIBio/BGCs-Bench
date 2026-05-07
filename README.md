@@ -9,3 +9,13 @@ Benchmarked models are below:
 - Evo
 - Evo 2 (7B and 40B)
 - NTv3
+
+## Environment
+All inference and analysis workflows (e.g., linear probing and logit lens) were executed using Apptainer.
+```
+# Evo 2
+apptainer build containers/evo2_env.sif containers/evo2_env.def
+
+# Other models and analyses
+apptainer build containers/hf_env.sif containers/hf_env.def
+```

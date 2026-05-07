@@ -1,0 +1,52 @@
+Bootstrap: docker
+From: nvcr.io/nvidia/pytorch:25.03-py3
+
+%labels
+    Author Keisuke Hirota
+    Organization ROIS-ALIS
+    Description NVIDIA PyTorch 25.03 + pinned HF/BioPython stack
+
+%environment
+    export LC_ALL=C
+    export LANG=C
+    export PYTHONNOUSERSITE=1
+    export PIP_NO_CACHE_DIR=1
+
+%post
+    set -eux
+
+    # Install libraries
+    python -m pip install --no-cache-dir \
+        transformers==4.57.3 \
+        datasets==2.2.1 \
+        evaluate==0.4.6 \
+        accelerate==1.12.0 \
+        biopython==1.86
+
+    # Check versions
+    python - <<'PY'
+import transformers
+import datasets
+import evaluate
+import accelerate
+import Bio
+
+print("transformers:", transformers.__version__)
+print("datasets:", datasets.__version__)
+print("evaluate:", evaluate.__version__)
+print("accelerate:", accelerate.__version__)
+print("biopython:", Bio.__version__)
+PY
+
+%runscript
+    exec python "$@"
+
+%test
+    python - <<'PY'
+import transformers
+import datasets
+import evaluate
+import accelerate
+import Bio
+print("Apptainer image test OK")
+PY

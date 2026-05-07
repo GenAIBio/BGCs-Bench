@@ -1,0 +1,22 @@
+Bootstrap: docker
+From: nvcr.io/nvidia/pytorch:25.03-py3
+
+%labels
+    Author Keisuke Hirota
+    Organization ROIS-ALIS
+    Description NVIDIA PyTorch 25.03 + Evo 2
+
+%environment
+    export LC_ALL=C
+    export LANG=C
+    export PYTHONNOUSERSITE=1
+    export PIP_NO_CACHE_DIR=1
+
+%post
+    set -eux
+
+    # Install libraries
+    python -m pip install --no-cache-dir vtx==1.0.7 evo2
+
+%runscript
+    exec python "$@"
