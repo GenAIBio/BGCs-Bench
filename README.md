@@ -61,4 +61,14 @@ python scripts/logitlens/evo2_logitlens.py \
 ```
 
 ## Citation
-> t.b.a
+If you use this code and/or BGCs-Bench dataset, please cite our preprint.
+```
+@article {Hirota2026.05.12.724296,
+	author = {Hirota, Keisuke and Higashi, Koichi and Kurokawa, Ken and Yamada, Takuji},
+	title = {Benchmarking long-context genome language models on biosynthetic gene clusters},
+	year = {2026},
+	doi = {10.64898/2026.05.12.724296},
+	publisher = {Cold Spring Harbor Laboratory},
+	journal = {bioRxiv}
+}
+```
